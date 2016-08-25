@@ -45,6 +45,35 @@ namespace ProyectoFinal
         private void ComboBoxComunidadAutonoma_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+            //**RECUERDEN CAMBIAR EL DATA SOURCE, Jeje
+            //"Data Source=MARIA-HP;User Id=parquenatural;Password=pepe;
+            //"Data Source=DESKTOP-55UT6S1;User Id=parquenaturalv02;Password=clave;"
+            OracleConnection databaseConnection = new OracleConnection("Data Source=MARIA-HP;User Id=parquenatural;Password=pepe;");
+            string query = "select * from COMUNIDAD_AUTONOMA where id_ca='" + ComboBoxComunidadAutonoma.Text + "'";
+            OracleCommand cmd = new OracleCommand(query, databaseConnection);
+            OracleDataReader myReader;
+
+            try
+            {
+                databaseConnection.Open();
+                myReader = cmd.ExecuteReader();
+
+                while (myReader.Read())
+                {
+                    string intArea = myReader.GetInt64(myReader.GetOrdinal("id_ca")).ToString();
+                    String stringNombre = myReader.GetString(myReader.GetOrdinal("nombre_ca"));
+                    string intNumParque = myReader.GetInt64(myReader.GetOrdinal("num_parque")).ToString();
+                    string intSuperDeclarada = myReader.GetInt64(myReader.GetOrdinal("sup_declarada")).ToString();
+                    comID.Text = intArea;
+                    comNombre.Text = stringNombre;
+                    comNumero.Text = intNumParque;
+                    comSuperficieDeclarada.Text = intSuperDeclarada;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         void FillCombo1()
@@ -115,4 +144,3 @@ namespace ProyectoFinal
         }
     }
 }
-
