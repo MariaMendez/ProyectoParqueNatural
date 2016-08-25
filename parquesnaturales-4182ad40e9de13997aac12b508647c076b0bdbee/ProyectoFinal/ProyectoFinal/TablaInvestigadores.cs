@@ -39,5 +39,11 @@ namespace ProyectoFinal
             invTitulo.Clear();
             invApellido.Clear();
         }
+
+        private void ComboBoxInvestigador_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+   
+        }
     }
 }
