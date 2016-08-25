@@ -80,12 +80,12 @@
             this.label5.TabIndex = 101;
             this.label5.Text = "Nombre";
             // 
-            // labelapellido
+            // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label4.Location = new System.Drawing.Point(438, 209);
-            this.label4.Name = "labelapellido";
+            this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(173, 20);
             this.label4.TabIndex = 100;
             this.label4.Text = "Fecha de Fundación";
@@ -151,12 +151,12 @@
             this.buttonEliminaParqueNatural.TabIndex = 93;
             this.buttonEliminaParqueNatural.UseVisualStyleBackColor = false;
             // 
-            // ParNatlabel
+            // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label2.Location = new System.Drawing.Point(110, 171);
-            this.label2.Name = "ParNatlabel";
+            this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(93, 20);
             this.label2.TabIndex = 92;
             this.label2.Text = "Existentes";
@@ -174,6 +174,7 @@
             this.ComboBoxParqueNatural.Size = new System.Drawing.Size(177, 26);
             this.ComboBoxParqueNatural.TabIndex = 91;
             this.ComboBoxParqueNatural.Tag = "";
+            this.ComboBoxParqueNatural.SelectedIndexChanged += new System.EventHandler(this.ComboBoxParqueNatural_SelectedIndexChanged);
             // 
             // parqueID
             // 
@@ -232,8 +233,8 @@
         private System.Windows.Forms.Button buttonActualizarParqueNatural;
         private System.Windows.Forms.Button buttonEliminaParqueNatural;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox ComboBoxParqueNatural;
         private System.Windows.Forms.TextBox parqueID;
         private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.ComboBox ComboBoxParqueNatural;
     }
 }
