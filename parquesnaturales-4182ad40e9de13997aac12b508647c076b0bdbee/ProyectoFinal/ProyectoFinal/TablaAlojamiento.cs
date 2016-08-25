@@ -102,7 +102,7 @@ namespace ProyectoFinal
             //**RECUERDEN CAMBIAR EL DATA SOURCE, Jeje
             //"Data Source=MARIA-HP;User Id=parquenatural;Password=pepe;
             //"Data Source=DESKTOP-55UT6S1;User Id=parquenaturalv02;Password=clave;"
-            OracleConnection databaseConnection = new OracleConnection("Data Source=DESKTOP-55UT6S1;User Id=parquenaturalv02;Password=clave;");
+            OracleConnection databaseConnection = new OracleConnection("Data Source=MARIA-HP;User Id=parquenatural;Password=pepe;");
             string query = "select id_parque from ALOJAMIENTO";
             OracleCommand cmd = new OracleCommand(query, databaseConnection);
             OracleDataReader myReader;
@@ -132,7 +132,7 @@ namespace ProyectoFinal
         {
 
             //**RECUERDEN CAMBIAR EL DATA SOURCE, Jeje
-            OracleConnection databaseConnection = new OracleConnection("Data Source=DESKTOP-55UT6S1;User Id=parquenaturalv02;Password=clave;");
+            OracleConnection databaseConnection = new OracleConnection("Data Source=MARIA-HP;User Id=parquenatural;Password=pepe;");
             string query = "select id_alojamiento from ALOJAMIENTO";
             OracleCommand cmd = new OracleCommand(query, databaseConnection);
             OracleDataReader myReader;

@@ -273,8 +273,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox excComboBoxCodAlojamiento;
         private System.Windows.Forms.Button buttonExcursionVolver;
         private System.Windows.Forms.Button buttonLimpiaExcursion;
         private System.Windows.Forms.Label label5;
@@ -292,5 +290,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox excTipoExcursion;
+        public System.Windows.Forms.ComboBox excComboBoxCodAlojamiento;
     }
 }
