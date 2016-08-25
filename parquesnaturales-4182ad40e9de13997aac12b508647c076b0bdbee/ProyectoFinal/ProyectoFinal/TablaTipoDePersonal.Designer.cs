@@ -70,32 +70,32 @@
             this.buttonLimpiaTipoPersonal.UseVisualStyleBackColor = true;
             this.buttonLimpiaTipoPersonal.Click += new System.EventHandler(this.buttonLimpiaTipoPersonal_Click);
             // 
-            // Nombretp
+            // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label5.Location = new System.Drawing.Point(491, 187);
-            this.label5.Name = "Nombretp";
+            this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 20);
             this.label5.TabIndex = 120;
             this.label5.Text = "Nombre";
             // 
-            // textvisNombre
+            // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label4.Location = new System.Drawing.Point(459, 230);
-            this.label4.Name = "textvisNombre";
+            this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 20);
             this.label4.TabIndex = 119;
             this.label4.Text = "Descripción";
             // 
-            // textvisID
+            // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(445, 146);
-            this.label3.Name = "textvisID";
+            this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(117, 20);
             this.label3.TabIndex = 117;
             this.label3.Text = "Identificación";
@@ -151,12 +151,12 @@
             this.buttonEliminaTipoPersonal.TabIndex = 112;
             this.buttonEliminaTipoPersonal.UseVisualStyleBackColor = false;
             // 
-            // tplabel
+            // lable2
             // 
             this.lable2.AutoSize = true;
             this.lable2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.lable2.Location = new System.Drawing.Point(107, 170);
-            this.lable2.Name = "tplabel";
+            this.lable2.Name = "lable2";
             this.lable2.Size = new System.Drawing.Size(93, 20);
             this.lable2.TabIndex = 111;
             this.lable2.Text = "Existentes";
@@ -173,6 +173,7 @@
             this.ComboBoxTipoPersonal.Size = new System.Drawing.Size(177, 26);
             this.ComboBoxTipoPersonal.TabIndex = 110;
             this.ComboBoxTipoPersonal.Tag = "";
+            this.ComboBoxTipoPersonal.SelectedIndexChanged += new System.EventHandler(this.ComboBoxTipoPersonal_SelectedIndexChanged);
             // 
             // tipoperID
             // 

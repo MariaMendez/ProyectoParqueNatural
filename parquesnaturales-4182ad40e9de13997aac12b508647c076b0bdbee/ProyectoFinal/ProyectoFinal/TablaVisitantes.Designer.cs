@@ -51,12 +51,12 @@
             this.visProfesion = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // Domicilio
+            // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label8.Location = new System.Drawing.Point(499, 211);
-            this.label8.Name = "Domicilio";
+            this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(81, 20);
             this.label8.TabIndex = 105;
             this.label8.Text = "Domicilio";
@@ -108,22 +108,22 @@
             this.buttonLimpiaVisitantes.UseVisualStyleBackColor = true;
             this.buttonLimpiaVisitantes.Click += new System.EventHandler(this.buttonLimpiaVisitantes_Click);
             // 
-            // extvsiDNI
+            // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label7.Location = new System.Drawing.Point(540, 127);
-            this.label7.Name = "extvsiDNI";
+            this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(40, 20);
             this.label7.TabIndex = 100;
             this.label7.Text = "DNI";
             // 
-            // textvisNombre
+            // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label6.Location = new System.Drawing.Point(509, 169);
-            this.label6.Name = "textvisNombre";
+            this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 20);
             this.label6.TabIndex = 99;
             this.label6.Text = "Nombre";
@@ -138,12 +138,12 @@
             this.label2.TabIndex = 98;
             this.label2.Text = "Código de Alojamiento";
             // 
-            // textvisID
+            // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label5.Location = new System.Drawing.Point(463, 86);
-            this.label5.Name = "textvisID";
+            this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(117, 20);
             this.label5.TabIndex = 97;
             this.label5.Text = "Identificación";
@@ -199,12 +199,12 @@
             this.buttonEliminaVisitantes.TabIndex = 92;
             this.buttonEliminaVisitantes.UseVisualStyleBackColor = false;
             // 
-            // comlabel
+            // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label4.Location = new System.Drawing.Point(107, 170);
-            this.label4.Name = "comlabel";
+            this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(93, 20);
             this.label4.TabIndex = 91;
             this.label4.Text = "Existentes";
@@ -221,6 +221,7 @@
             this.ComboBoxVisitantes.Size = new System.Drawing.Size(177, 26);
             this.ComboBoxVisitantes.TabIndex = 90;
             this.ComboBoxVisitantes.Tag = "";
+            this.ComboBoxVisitantes.SelectedIndexChanged += new System.EventHandler(this.ComboBoxVisitantes_SelectedIndexChanged);
             // 
             // visID
             // 

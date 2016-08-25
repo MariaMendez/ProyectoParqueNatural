@@ -61,6 +61,16 @@
             this.label3.TabIndex = 127;
             this.label3.Text = "Profesión";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.label8.Location = new System.Drawing.Point(112, 170);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(93, 20);
+            this.label8.TabIndex = 111;
+            this.label8.Text = "Existentes";
+            // 
             // visgProfesion
             // 
             this.visgProfesion.BackColor = System.Drawing.SystemColors.Control;
@@ -69,12 +79,12 @@
             this.visgProfesion.Size = new System.Drawing.Size(197, 20);
             this.visgProfesion.TabIndex = 126;
             // 
-            // Domicilio
+            // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label7.Location = new System.Drawing.Point(504, 211);
-            this.label7.Name = "Domicilio";
+            this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(81, 20);
             this.label7.TabIndex = 125;
             this.label7.Text = "Domicilio";
@@ -131,7 +141,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label6.Location = new System.Drawing.Point(545, 127);
-            this.label6.Name = "extvsiDNI";
+            this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(40, 20);
             this.label6.TabIndex = 120;
             this.label6.Text = "DNI";
@@ -141,7 +151,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label5.Location = new System.Drawing.Point(514, 169);
-            this.label5.Name = "textvisNombre";
+            this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(71, 20);
             this.label5.TabIndex = 119;
             this.label5.Text = "Nombre";
@@ -161,7 +171,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label4.Location = new System.Drawing.Point(468, 86);
-            this.label4.Name = "textvisID";
+            this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(117, 20);
             this.label4.TabIndex = 117;
             this.label4.Text = "Identificación";
@@ -217,16 +227,6 @@
             this.buttonEliminaVisitantesG.TabIndex = 112;
             this.buttonEliminaVisitantesG.UseVisualStyleBackColor = false;
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.label8.Location = new System.Drawing.Point(112, 170);
-            this.label8.Name = "comlabel";
-            this.label8.Size = new System.Drawing.Size(93, 20);
-            this.label8.TabIndex = 111;
-            this.label8.Text = "Existentes";
-            // 
             // ComboBoxVisitantesG
             // 
             this.ComboBoxVisitantesG.AccessibleDescription = "";
@@ -239,6 +239,7 @@
             this.ComboBoxVisitantesG.Size = new System.Drawing.Size(177, 26);
             this.ComboBoxVisitantesG.TabIndex = 110;
             this.ComboBoxVisitantesG.Tag = "";
+            this.ComboBoxVisitantesG.SelectedIndexChanged += new System.EventHandler(this.ComboBoxVisitantesG_SelectedIndexChanged);
             // 
             // visgID
             // 
@@ -263,7 +264,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 511);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.visgProfesion);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.visgDomicilio);

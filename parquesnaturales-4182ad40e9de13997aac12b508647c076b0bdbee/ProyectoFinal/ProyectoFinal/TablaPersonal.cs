@@ -71,7 +71,6 @@ namespace ProyectoFinal
 
                     ComboBoxPersonal.Items.Add(myReader.GetInt64(myReader.GetOrdinal("id_personal")));
 
-
                 }
             }
             catch (Exception ex)

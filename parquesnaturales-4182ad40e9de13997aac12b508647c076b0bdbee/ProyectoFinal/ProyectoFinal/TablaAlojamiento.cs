@@ -69,7 +69,42 @@ namespace ProyectoFinal
 
         private void ComboBoxAlojamiento_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //**RECUERDEN CAMBIAR EL DATA SOURCE, Jeje
+            //"Data Source=MARIA-HP;User Id=parquenatural;Password=pepe;
+            //"Data Source=DESKTOP-55UT6S1;User Id=parquenaturalv02;Password=clave;"
+            OracleConnection databaseConnection = new OracleConnection("Data Source=MARIA-HP;User Id=parquenatural;Password=pepe");
+            string query = "select * from ALOJAMIENTO where id_alojamiento='" + ComboBoxAlojamiento.Text + "'";
+            OracleCommand cmd = new OracleCommand(query, databaseConnection);
+            OracleDataReader myReader;
 
+            try
+            {
+                databaseConnection.Open();
+                myReader = cmd.ExecuteReader();
+
+                while (myReader.Read())
+                {
+
+                    //  aloComboBoxParque.Items.Add(myReader.GetInt64(myReader.GetOrdinal("id_parque")));
+
+                    string intIdentificacion = myReader.GetInt64(myReader.GetOrdinal("id_alojamiento")).ToString();
+                    String stringCategoria = myReader.GetString(myReader.GetOrdinal("categoria"));
+                    String stringCapacidad = myReader.GetInt64(myReader.GetOrdinal("capacidad")).ToString(); ;
+                    aloID.Text = intIdentificacion;
+                    aloCategoria.Text = stringCategoria;
+                    aloCapacidad.Text = stringCapacidad;
+
+
+                    // Int64 intIdentificacion = myReader.GetInt64(myReader.GetOrdinal("id_alojamiento"));
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void aloID_TextChanged(object sender, EventArgs e)
