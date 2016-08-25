@@ -58,6 +58,7 @@ namespace ProyectoFinal
 
             Int64 id = Int64.Parse(aloID.Text);
             controlador.actualizaCategoria(id, aloCategoria.Text);
+            MessageBox.Show("Registro Actualizado", "");
         }
 
         private void buttonEliminaAlojamiento_Click(object sender, EventArgs e)
@@ -145,7 +146,7 @@ namespace ProyectoFinal
                     //string sIdParque = myReader.GetString(4);
                     //aloComboBoxParque.Items.Add(sIdParque);
 
-                    ComboBoxAlojamiento.Items.Add(myReader.GetString(myReader.GetOrdinal("id_alojamiento")));
+                    ComboBoxAlojamiento.Items.Add(myReader.GetInt64(myReader.GetOrdinal("id_alojamiento")));
                     
 
                 }

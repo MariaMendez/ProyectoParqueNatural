@@ -62,6 +62,7 @@
             this.excComboBoxCodAlojamiento.Size = new System.Drawing.Size(197, 26);
             this.excComboBoxCodAlojamiento.TabIndex = 67;
             this.excComboBoxCodAlojamiento.Tag = "";
+            this.excComboBoxCodAlojamiento.SelectedIndexChanged += new System.EventHandler(this.excComboBoxCodAlojamiento_SelectedIndexChanged);
             // 
             // buttonExcursionVolver
             // 
@@ -179,12 +180,12 @@
             this.buttonEliminaExcursion.TabIndex = 56;
             this.buttonEliminaExcursion.UseVisualStyleBackColor = false;
             // 
-            // exclabel
+            // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.label7.Location = new System.Drawing.Point(110, 171);
-            this.label7.Name = "exclabel";
+            this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(93, 20);
             this.label7.TabIndex = 55;
             this.label7.Text = "Existentes";
@@ -202,6 +203,7 @@
             this.ComboBoxExcursion.Size = new System.Drawing.Size(177, 26);
             this.ComboBoxExcursion.TabIndex = 54;
             this.ComboBoxExcursion.Tag = "";
+            this.ComboBoxExcursion.SelectedIndexChanged += new System.EventHandler(this.ComboBoxExcursion_SelectedIndexChanged);
             // 
             // excID
             // 
