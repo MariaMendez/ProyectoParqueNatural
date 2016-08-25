@@ -36,10 +36,10 @@ namespace ProyectoFinal
         private void buttonGuardaAlojamiento_Click(object sender, EventArgs e)
         {
           
-            Int64 capacidad= Int64.Parse(aloCapacidad.Text.ToString());
-            Int64 codigoParque= Int64.Parse(aloComboBoxParque.Text.ToString());
-            Int64 id = Int64.Parse(aloID.Text.ToString());
-            controlador.insertaAlojamiento(id,aloCategoria.ToString(),capacidad,codigoParque);
+            Int64 capacidad= Int64.Parse(aloCapacidad.Text);
+            Int64 codigoParque= Int64.Parse(aloComboBoxParque.Text);
+            Int64 id = Int64.Parse(aloID.Text);
+            controlador.insertaAlojamiento(id,aloCategoria.Text,capacidad,codigoParque);
             
         }
 

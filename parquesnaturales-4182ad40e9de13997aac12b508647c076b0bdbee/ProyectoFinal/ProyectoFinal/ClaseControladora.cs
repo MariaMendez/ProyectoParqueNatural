@@ -37,7 +37,7 @@ namespace ProyectoFinal
                 {
 
                 databaseConnection.Open();
-                OracleCommand cmd = new OracleCommand("DMLALOJAMIENTO.INSERTAALOJA");
+                OracleCommand cmd = new OracleCommand("DMLALOJAMIENTO.INSERTAALOJA",databaseConnection);
                 cmd.CommandType = CommandType.StoredProcedure;
                 //cmd.BindByName = true;
                 cmd.Parameters.Add("alojamiento", OracleDbType.Int64).Value = idAlojamiento;
