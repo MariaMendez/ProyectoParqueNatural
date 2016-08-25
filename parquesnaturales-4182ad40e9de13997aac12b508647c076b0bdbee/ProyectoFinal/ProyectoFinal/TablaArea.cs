@@ -65,12 +65,51 @@ namespace ProyectoFinal
         private void ComboBoxArea_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+            //**RECUERDEN CAMBIAR EL DATA SOURCE, Jeje
+            //"Data Source=MARIA-HP;User Id=parquenatural;Password=pepe;
+            //"Data Source=DESKTOP-55UT6S1;User Id=parquenaturalv02;Password=clave;"
+            OracleConnection databaseConnection = new OracleConnection("Data Source=DESKTOP-55UT6S1;User Id=parquenaturalv02;Password=clave;");
+            string query = "select * from AREA where id_area='" + ComboBoxArea.Text + "'";
+            OracleCommand cmd = new OracleCommand(query, databaseConnection);
+            OracleDataReader myReader;
+
+            try
+            {
+                databaseConnection.Open();
+                myReader = cmd.ExecuteReader();
+
+                while (myReader.Read())
+                {
+
+                    //  aloComboBoxParque.Items.Add(myReader.GetInt64(myReader.GetOrdinal("id_parque")));
+
+                    string intArea = myReader.GetInt64(myReader.GetOrdinal("id_area")).ToString();
+                    String stringNombre = myReader.GetString(myReader.GetOrdinal("nombre_area"));
+                    String intExtension= myReader.GetInt64(myReader.GetOrdinal("extension_area")).ToString(); ;
+                    areaID.Text = intArea;
+                    areaNombre.Text = stringNombre;
+                    areaExtension.Text = intExtension;
+
+
+                    // Int64 intIdentificacion = myReader.GetInt64(myReader.GetOrdinal("id_alojamiento"));
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+
+
+
         }
         void FillCombo2()
         {
 
             //**RECUERDEN CAMBIAR EL DATA SOURCE, Jeje
-            OracleConnection databaseConnection = new OracleConnection("Data Source=MARIA-HP;User Id=parquenatural;Password=pepe;");
+            OracleConnection databaseConnection = new OracleConnection("Data Source=DESKTOP-55UT6S1;User Id=parquenaturalv02;Password=clave;");
             string query = "select id_area from AREA";
             OracleCommand cmd = new OracleCommand(query, databaseConnection);
             OracleDataReader myReader;
