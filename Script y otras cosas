@@ -1,0 +1,542 @@
+/*
+Administracion de bases de datos
+Script 20/07/16
+
+*/
+
+
+
+
+--Drops
+DROP TABLE AREA ;
+DROP TABLE ESPECIE ;
+DROP TABLE INVESTIGADOR;
+DROP TABLE ORGANISMO;
+DROP TABLE PARQUE_NATURAL;
+DROP TABLE ALOJAMIENTO;
+DROP TABLE COMUNIDAD_AUTONOMA;
+DROP TABLE EXCURSION;
+DROP TABLE PROYECTO;
+DROP TABLE TIPO_PERSONAL;
+DROP TABLE PERSONAL;
+DROP TABLE VISITANTE;
+
+
+CREATE TABLE AREA
+  (
+    id_area        NUMBER (6)   PRIMARY KEY,
+    nombre_area    VARCHAR2 (30)  NOT NULL ,
+    extension_area NUMBER   (15)  NOT NULL,
+    constraint ck_extension check(extension_area>=0)
+  ) ;
+  
+INSERT INTO AREA VALUES (1200, 'Los crestones', 1220); 
+INSERT INTO AREA VALUES(1300, 'Sendero valle del silencio', 1330);
+INSERT INTO AREA VALUES(1400, 'Sendero Pava y Catarata', 1440);
+INSERT INTO AREA VALUES(1500, 'Sendero Robledales', 1550);
+INSERT INTO AREA VALUES(1600, 'San Pedrillo', 1660);
+
+
+CREATE TABLE ESPECIE
+  (
+    id_especie             NUMBER (6)   PRIMARY KEY,
+    tipo_especie           CHAR   (1)   NOT NULL ,
+    nom_cientifico_especie VARCHAR2 (40)  NOT NULL ,
+    nom_vulgar_especie     VARCHAR2 (30)  NOT NULL ,
+    num_individuos         NUMBER (5)   NOT NULL ,
+    floracion              CHAR   (1),
+    periodo_florac         VARCHAR2 (12),
+    tipo_alimentacion      VARCHAR2 (15),
+    periodo_celo           VARCHAR2 (10),
+    tipo_mineral           VARCHAR2 (7),
+    constraint ck_floracion check(floracion IN('S', 'N')),
+    constraint ck_tipo_especie check(tipo_especie IN('V', 'A', 'M'))
+  ) ;
+  
+INSERT INTO ESPECIE VALUES (100,'V', 'Laurus nobilis','Laurel',12000,'S', 'Primavera',null,null,null);
+INSERT INTO ESPECIE VALUES (200,'A', 'Dermochelys coriacea','Tortuga Baula',50,null,null,'Carnivoro','2 meses',null);
+INSERT INTO ESPECIE VALUES (300,'A', 'Panthera onca','Jaguar',20,null,null,'Carnivoro','93 dias',null);
+INSERT INTO ESPECIE VALUES (400,'M', 'Calcopirita','Pirita de cobre',300,null,null,null,null,'Cristal');
+INSERT INTO ESPECIE VALUES (500,'V', 'Quercus petraea','Roble común',15000,'S', 'Abril o Mayo',null,null,null);
+INSERT INTO ESPECIE VALUES (600,'V', 'Bryophyta Schimp','Helecho',14000,'S', '5 meses',null,null,null);
+INSERT INTO ESPECIE VALUES (700,'A', 'Cyanocorax Morio','Urraca Parda',80,null,null,'Omnivoro','verano',null);
+INSERT INTO ESPECIE VALUES (800,'A', 'Dendrobtes auratus','Rana negra venenosa',20,null,null,'Carnivoro','primavera',null);
+INSERT INTO ESPECIE VALUES (900,'M', 'Moscovita','Vidrio de Moscú',500,null,null,null,null,'Roca');
+INSERT INTO ESPECIE VALUES (1000,'V', 'Muscari armeniacum','Nazarenos',1400,'S', 'Otoño',null,null,null);
+
+
+CREATE TABLE INVESTIGADOR
+  (
+    id_inv       NUMBER   (6)   PRIMARY KEY,
+    nom_inv      VARCHAR2   (30)  NOT NULL ,
+    apellido_inv VARCHAR2   (30)  NOT NULL ,
+    telefono_inv NUMBER   (8)   NOT NULL ,
+    titulo_inv   VARCHAR2   (40)  NOT NULL
+  ) ;
+  
+INSERT INTO investigador VALUES (100235,'Calvin','Harris',88548967,'Ms. Biologo Marino');
+INSERT INTO investigador VALUES (200568,'Drake','Graham',78964502,'PhD. Microbiologo');
+INSERT INTO investigador VALUES (300789,'Adele','Adkins',4789654,'PhD. Biologa Marina');
+INSERT INTO investigador VALUES (400568,'Bob','Marley',568978,'Lic. Hojas verdes');
+INSERT INTO investigador VALUES (508976,'Sia','Furler',568978,'Lic. Mamiferos');
+
+CREATE TABLE ORGANISMO
+  (
+    id_organismo        NUMBER    (5)   PRIMARY KEY ,
+    nombre_organismo    VARCHAR2  (40)  NOT NULL ,
+    direccion_organismo VARCHAR2  (40)  NOT NULL
+  ) ;
+  
+INSERT INTO ORGANISMO VALUES (123, 'SINAC', 'San Francisco, San jose');
+INSERT INTO ORGANISMO VALUES (567, 'MINAE', 'Centro, San Jose');
+
+CREATE TABLE PARQUE_NATURAL
+  (
+    id_parque     NUMBER  (6)   PRIMARY KEY ,
+    nombre_parque VARCHAR2  (40)  NOT NULL ,
+    fec_parque    DATE        NOT NULL
+  ) ;
+  
+INSERT INTO PARQUE_NATURAL VALUES(1200, 'Parque Nacional Chirripo', '29-NOV-2016');
+INSERT INTO PARQUE_NATURAL VALUES(1300, 'Parque Nacional Arenal', '25-JUN-2016');
+INSERT INTO PARQUE_NATURAL VALUES(1400, 'Parque Nacional Carara', '11-JUN-2016');
+INSERT INTO PARQUE_NATURAL VALUES(1500, 'Parque Nacional Santa Rosa', '8-SEP-2016');
+INSERT INTO PARQUE_NATURAL VALUES(1600, 'Parque Nacional Corcobado', '10-JUL-2016');
+
+CREATE TABLE ALOJAMIENTO
+  (
+    id_alojamiento  NUMBER    (6)   PRIMARY KEY,
+    categoria       VARCHAR2  (20)  NOT NULL ,
+    capacidad       NUMBER    (5)   NOT NULL ,
+    id_parque       NUMBER    (6)   NOT NULL,
+    CONSTRAINT aloja_FK FOREIGN KEY   ( id_parque ) REFERENCES PARQUE_NATURAL (id_parque) 
+  ) ;
+  
+INSERT INTO ALOJAMIENTO VALUES (7416, 'Albergue',40,1200);
+INSERT INTO ALOJAMIENTO VALUES (3289, 'Cabaña',30,1300);
+INSERT INTO ALOJAMIENTO VALUES (5512, 'Lujosa',100,1400);
+INSERT INTO ALOJAMIENTO VALUES (1489, 'Bungalow',59,1500);
+INSERT INTO ALOJAMIENTO VALUES (0217, 'Villa',56,1600);
+
+CREATE TABLE COMUNIDAD_AUTONOMA
+  (
+    id_ca         NUMBER  (6)   PRIMARY KEY ,
+    nombre_ca     VARCHAR2  (30)  NOT NULL ,
+    num_parque    NUMBER  (5)   NOT NULL ,
+    sup_declarada NUMBER  (10)  NOT NULL ,
+    cod_organismo NUMBER  (5)   NOT NULL,
+    CONSTRAINT comunidad_FK     FOREIGN KEY ( cod_organismo ) REFERENCES ORGANISMO ( id_organismo ) 
+  ) ;
+  
+INSERT INTO COMUNIDAD_AUTONOMA VALUES(1300, 'Bribri',12,1222,123 );
+INSERT INTO COMUNIDAD_AUTONOMA VALUES(1400, 'Cabecares',13,1333,567);
+INSERT INTO COMUNIDAD_AUTONOMA VALUES(1500, 'Terrabas',14,1444,123);
+INSERT INTO COMUNIDAD_AUTONOMA VALUES(1600, 'Huetares',15,1555,567);
+INSERT INTO COMUNIDAD_AUTONOMA VALUES(1700, 'Chorotegas',16,1666,123);
+
+CREATE TABLE EXCURSION
+  (
+    id_excursion    NUMBER  (6)   PRIMARY KEY ,
+    fecha_excursion DATE      NOT NULL ,
+    hora_excursion  VARCHAR2(30)  NOT NULL ,
+    tipo_excursion  VARCHAR2(20)  NOT NULL ,
+    cod_alojamiento NUMBER  (6)   NOT NULL,
+    CONSTRAINT excursion_FK     FOREIGN KEY ( cod_alojamiento ) REFERENCES ALOJAMIENTO ( id_alojamiento ) 
+  ) ;
+  
+INSERT INTO EXCURSION VALUES (5688, '26-JUN-2016', '4:00 AM A 3:00 PM','Deportiva',7416);
+INSERT INTO EXCURSION VALUES (9881, '10-JUL-2016', '6:00 AM A 1:00 PM','Aventura',3289);
+INSERT INTO EXCURSION VALUES (0127, '09-SEP-2016', '10:00 AM A 2:00 PM','Cultural',5512);
+INSERT INTO EXCURSION VALUES (6968, '15-NOV-2016', '8:00 AM A 3:00 PM','Campamento',1489);
+INSERT INTO EXCURSION VALUES (9810, '10-FEB-2016', '11:00 AM A 4:00 PM','Caminata tipo A',0217);
+
+CREATE TABLE PROYECTO
+  (
+    id_proyecto        NUMBER (6)   PRIMARY KEY ,
+    presupuesto        NUMBER (15)  NOT NULL ,
+    fecha_inicio       DATE     NOT NULL ,
+    fecha_finalizacion DATE     NOT NULL ,
+    id_inv             NUMBER (6)   NOT NULL ,
+    CONSTRAINT proyecto01_fk    FOREIGN KEY ( id_inv ) REFERENCES INVESTIGADOR ( id_inv )
+  ) ;
+
+INSERT INTO PROYECTO VALUES (2100, 150000, '18-AUG-2016', '29-JAN-2017',100235  );  
+INSERT INTO PROYECTO VALUES (2200, 250000, '25-JUN-2016', '29-NOV-2016',200568 );
+INSERT INTO PROYECTO VALUES (2300, 365000, '11-JUN-2016', '8-MAY-2016',300789 );
+INSERT INTO PROYECTO VALUES (2400, 450000, '19-MAY-2016', '25-OCT-2016', 400568);
+INSERT INTO PROYECTO VALUES (2500, 550000, '20-FEB-2016', '16-OCT-2016', 508976 );
+
+CREATE TABLE TIPO_PERSONAL
+  (
+    id_tipoper     NUMBER   (6)   PRIMARY KEY ,
+    nombre_tipoper VARCHAR2 (40)  NOT NULL ,
+    descripcion    VARCHAR2 (45)  NOT NULL
+  ) ;
+  
+INSERT INTO TIPO_PERSONAL VALUES (789, 'Personal de gestion', 'Registra los datos de los visitantes');
+INSERT INTO TIPO_PERSONAL VALUES (456, 'Personal de vigilancia', 'Vigila un area determinada');
+INSERT INTO TIPO_PERSONAL VALUES (123, 'Personal de conservacion', 'Mantiene y conserva areas');
+INSERT INTO TIPO_PERSONAL VALUES (147, 'Personal investigador', 'Realizan proyectos de investigacion');
+
+CREATE TABLE PERSONAL
+  (
+    id_personal         NUMBER    (6)   PRIMARY KEY ,
+    numero_seg_personal NUMBER    (12)  NOT NULL ,
+    nombre_personal     VARCHAR2  (30)  NOT NULL ,
+    telefono_casa       NUMBER    (8)   NOT NULL ,
+    telefono_movil      NUMBER    (8)   NOT NULL ,
+    salario             NUMBER    (10)  NOT NULL ,
+    id_parque           NUMBER    (6)   NOT NULL ,
+    id_tipoper          NUMBER    (6)   NOT NULL ,
+    id_proyecto         NUMBER    (6)   NOT NULL ,
+    CONSTRAINT personal01_FK  FOREIGN KEY ( id_parque )   REFERENCES PARQUE_NATURAL ( id_parque ),
+    CONSTRAINT personal02_FK  FOREIGN KEY ( id_tipoper )  REFERENCES TIPO_PERSONAL ( id_tipoper ),
+    CONSTRAINT personal03_FK  FOREIGN KEY ( id_proyecto ) REFERENCES PROYECTO ( id_proyecto ),
+    constraint ck_salario check(salario>=500000),
+    constraint ck_salario1 check(salario<=1500000)
+    
+  ) ;
+   
+INSERT INTO PERSONAL VALUES (12,1010, 'Katherine Bermudez',22334455,88009966,1400000, 1200,789,2100);
+INSERT INTO PERSONAL VALUES (25,8942, 'Kendall Cabrera',22894695,75894512,1200000, 1300,456,2200);
+INSERT INTO PERSONAL VALUES (89,9874, 'Esteban Vargas',22314569,88794562,530000, 1400,456,2300);
+INSERT INTO PERSONAL VALUES (56,4569, 'Ricardo Ledezma',22316697,78942310,540000, 1500,123,2400);
+INSERT INTO PERSONAL VALUES (45,1302, 'Maria Mendez',22310645,88461203,630000, 1600,147,2500);
+
+
+CREATE TABLE VISITANTE
+  (
+    id_visita        NUMBER   (10)  PRIMARY KEY ,
+    DNI_visita       NUMBER   (10)  NOT NULL ,
+    nombre_visita    VARCHAR2   (30)  NOT NULL ,
+    domicilio_visita VARCHAR2   (20)  NOT NULL ,
+    profesion_visita VARCHAR2   (20)  NOT NULL ,
+    cod_alojamiento  NUMBER   (6)   NOT NULL ,
+    CONSTRAINT visitante_fk FOREIGN KEY ( cod_alojamiento ) REFERENCES ALOJAMIENTO ( id_alojamiento ) 
+  ) ;
+
+INSERT INTO VISITANTE VALUES (1203,113645, 'Carol Hernandez','Heredia','Contadora',7416);
+INSERT INTO VISITANTE VALUES (2031,145963, 'Nicole Martinez','San Jose','Quimico',3289);
+INSERT INTO VISITANTE VALUES (1224,116451, 'Marco Guevara','Heredia','Profesor',5512);
+INSERT INTO VISITANTE VALUES (3214,163756, 'Eddy Ugalde','San Jose','Economista',1489);
+INSERT INTO VISITANTE VALUES (9641,174789, 'Marisol Zapata','Alajuela','ingeniera Mecanica',0217);
+
+CREATE TABLE compone
+  (
+    id_parque   NUMBER (6),
+    id_area     NUMBER (6),
+    CONSTRAINT  compone_PK    PRIMARY KEY (id_parque,  id_area),
+    CONSTRAINT  compone01_FK  FOREIGN KEY ( id_parque )   REFERENCES PARQUE_NATURAL ( id_parque ),
+    CONSTRAINT  compone02_FK  FOREIGN KEY ( id_area )   REFERENCES AREA ( id_area ) 
+  ) ;
+  
+INSERT INTO COMPONE VALUES (1200,1200);
+INSERT INTO COMPONE VALUES (1300,1300);
+INSERT INTO COMPONE VALUES (1400,1400);
+INSERT INTO COMPONE VALUES (1500,1500);
+INSERT INTO COMPONE VALUES (1600,1600);
+
+CREATE TABLE puede_tener
+  (
+  	id_ca     	NUMBER  (6),
+    id_parque   NUMBER  (6),
+    CONSTRAINT  puede_PK		PRIMARY KEY ( id_ca, id_parque ),
+    CONSTRAINT  puede01_FK  	FOREIGN KEY ( id_ca )     REFERENCES COMUNIDAD_AUTONOMA ( id_ca ),
+	CONSTRAINT  puede02_FK    	FOREIGN KEY (id_parque )  REFERENCES PARQUE_NATURAL ( id_parque )
+  ) ;
+  
+INSERT INTO puede_tener VALUES (1300,1200);
+INSERT INTO puede_tener VALUES (1400,1300);
+INSERT INTO puede_tener VALUES (1500,1400);
+INSERT INTO puede_tener VALUES (1600,1500);
+INSERT INTO puede_tener VALUES (1700,1600);
+
+CREATE TABLE residen
+  (
+    id_area    NUMBER (6),
+    id_especie NUMBER (6),
+    CONSTRAINT residen_PK     PRIMARY KEY(id_area,id_especie),
+    CONSTRAINT residen01_FK   FOREIGN KEY(id_area) REFERENCES AREA(id_area),
+    CONSTRAINT residen02_FK   FOREIGN KEY(id_especie) REFERENCES ESPECIE(id_especie)
+  ) ;
+
+ INSERT INTO residen VALUES (1200,100);
+ INSERT INTO residen VALUES (1300,400);
+ INSERT INTO residen VALUES (1400,500);
+ INSERT INTO residen VALUES (1500,200);
+ INSERT INTO residen VALUES (1600,300);
+ INSERT INTO residen VALUES (1200,600);
+ INSERT INTO residen VALUES (1300,700);
+ INSERT INTO residen VALUES (1400,800);
+ INSERT INTO residen VALUES (1500,900);
+ INSERT INTO residen VALUES (1600,1000);
+
+
+
+--Triggers
+--Inicio Primer Trigger
+
+CREATE TABLE logVisitante(
+valor_Amodificado VARCHAR2(40)  NOT NULL,
+valor_Dmoficado   VARCHAR2(30)  NOT NULL,
+usuario       VARCHAR2(20)  NOT NULL,
+fecha_modificada  DATE
+);
+
+CREATE OR REPLACE TRIGGER auditoria_clie AFTER UPDATE ON visitante
+FOR EACH ROW
+DECLARE
+BEGIN
+IF (UPDATING('nombre_visita')) THEN
+INSERT INTO logVisitante VALUES( :old.nombre_visita, :new.nombre_visita, nvl(v('APP_USER'),user),SYSDATE);
+ELSIF UPDATING('domicilio_visita') THEN 
+INSERT INTO logVisitante VALUES( :old.domicilio_visita,:new.domicilio_visita, nvl(v('APP_USER'),user),SYSDATE);
+ELSIF UPDATING('profesion_visita') THEN 
+INSERT INTO logVisitante VALUES( :old.profesion_visita,:new.profesion_visita, nvl(v('APP_USER'),user),SYSDATE);
+ELSIF UPDATING('cod_alojamiento') THEN 
+INSERT INTO logVisitante VALUES( :old.cod_alojamiento,:new.cod_alojamiento, nvl(v('APP_USER'),user), SYSDATE);
+END IF;
+END;
+/
+--Fin Primer Trigger
+
+--Inicio Segundo Trigger
+CREATE TABLE logPersonal(
+valor_Amodificado VARCHAR2(40)  NOT NULL,
+valor_Dmoficado   VARCHAR2(30)  NOT NULL,
+usuario       VARCHAR2(20)  NOT NULL,
+fecha_modificada  DATE
+);
+
+CREATE OR REPLACE TRIGGER auditoria_pers AFTER UPDATE ON personal
+FOR EACH ROW
+DECLARE
+BEGIN
+IF (UPDATING('id_tipoper')) THEN
+INSERT INTO logPersonal VALUES( :old.id_tipoper,:new.id_tipoper, nvl(v('APP_USER'),user),SYSDATE);
+ELSIF UPDATING('numero_seg_personal') THEN 
+INSERT INTO logPersonal VALUES( :old.numero_seg_personal,:new.numero_seg_personal, nvl(v('APP_USER'),user),SYSDATE);
+ELSIF UPDATING('nombre_personal') THEN 
+INSERT INTO logPersonal VALUES( :old.nombre_personal,:new.nombre_personal, nvl(v('APP_USER'),user),SYSDATE);
+ELSIF UPDATING('telefono_casa') THEN 
+INSERT INTO logPersonal VALUES( :old.telefono_casa,:new.telefono_casa, nvl(v('APP_USER'),user), SYSDATE);
+ELSIF UPDATING('telefono_movil') THEN 
+INSERT INTO logPersonal VALUES( :old.telefono_movil,:new.telefono_movil, nvl(v('APP_USER'),user), SYSDATE);
+ELSIF UPDATING('salario') THEN 
+INSERT INTO logPersonal VALUES( :old.salario,:new.salario, nvl(v('APP_USER'),user), SYSDATE);
+ELSIF UPDATING('id_parque') THEN 
+INSERT INTO logPersonal VALUES( :old.id_parque,:new.id_parque, nvl(v('APP_USER'),user), SYSDATE);
+ELSIF UPDATING('id_proyecto') THEN 
+INSERT INTO logPersonal VALUES( :old.id_proyecto,:new.id_proyecto, nvl(v('APP_USER'),user), SYSDATE);
+END IF;
+END;
+/
+--Fin Segundo Trigger
+
+--Inicio Tercer Trigger
+CREATE OR REPLACE TRIGGER actualiza_capacidad
+AFTER INSERT ON visitante
+FOR EACH ROW 
+DECLARE
+v_capacidad alojamiento.capacidad%TYPE;
+BEGIN 
+SELECT capacidad
+into v_capacidad
+FROM alojamiento 
+WHERE id_alojamiento=:new.cod_alojamiento;
+
+UPDATE alojamiento
+SET capacidad=(v_capacidad-1)
+WHERE :new.cod_alojamiento=id_alojamiento;
+END;
+
+--Fin Tercer Trigger
+
+
+--Procedimientos
+--Primer procedimiento
+
+CREATE OR REPLACE PACKAGE dmlAlojamiento IS
+PROCEDURE insertaAloja(alojamiento IN alojamiento.id_alojamiento%TYPE,a_categoria IN alojamiento.categoria%TYPE,a_capacidad IN alojamiento.capacidad%TYPE,
+idParque IN alojamiento.id_parque%TYPE);
+PROCEDURE updCateg(alojamiento IN alojamiento.id_alojamiento%TYPE,a_categoria IN alojamiento.categoria%TYPE);
+PROCEDURE updCapacidad(alojamiento IN alojamiento.id_alojamiento%TYPE,a_capacidad IN alojamiento.capacidad%TYPE);
+PROCEDURE delAloja(alojamiento1 IN alojamiento.id_alojamiento%TYPE);
+END dmlAlojamiento;
+/
+CREATE OR REPLACE PACKAGE BODY dmlAlojamiento AS
+PROCEDURE insertaAloja(alojamiento IN alojamiento.id_alojamiento%TYPE,a_categoria IN alojamiento.categoria%TYPE,a_capacidad IN alojamiento.capacidad%TYPE,
+idParque IN alojamiento.id_parque%TYPE) IS
+BEGIN
+ INSERT INTO alojamiento VALUES(alojamiento,a_categoria,a_capacidad,idParque);
+EXCEPTION 
+WHEN  OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('Ocurrió el error: '||SQLCODE||' Mensaje: '||SQLERRM);
+END insertaAloja;
+PROCEDURE updCateg(alojamiento IN alojamiento.id_alojamiento%TYPE,a_categoria IN alojamiento.categoria%TYPE) IS
+BEGIN
+ UPDATE alojamiento a
+ SET     a.categoria=a_categoria
+ WHERE   a.id_alojamiento=alojamiento;
+EXCEPTION 
+WHEN  OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('Ocurrió el error: '||SQLCODE||' Mensaje: '||SQLERRM);
+END updCateg;
+PROCEDURE updCapacidad(alojamiento IN alojamiento.id_alojamiento%TYPE,a_capacidad IN alojamiento.capacidad%TYPE) IS
+BEGIN
+ UPDATE alojamiento a
+ SET     a.capacidad=a_capacidad
+ WHERE   a.id_alojamiento=alojamiento;
+EXCEPTION 
+WHEN  OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('Ocurrió el error: '||SQLCODE||' Mensaje: '||SQLERRM);
+END updCapacidad;
+PROCEDURE delAloja(alojamiento1 IN alojamiento.id_alojamiento%TYPE) IS
+BEGIN
+ DELETE alojamiento WHERE id_alojamiento=alojamiento1;
+ EXCEPTION 
+WHEN  OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('Ocurrió el error: '||SQLCODE||' Mensaje: '||SQLERRM);
+END delAloja;
+END dmlAlojamiento;
+/
+--Fin primer procedimiento
+
+--Inicio segundo procedimiento
+CREATE OR REPLACE PACKAGE dmlExcursion IS
+PROCEDURE insertaExcursion(excursion IN excursion.id_excursion%TYPE,fecha IN excursion.fecha_excursion%TYPE,hora IN excursion.hora_excursion%TYPE,
+tipo IN excursion.tipo_excursion%TYPE,codigoAlojamiento IN excursion.cod_alojamiento%TYPE);
+PROCEDURE updFecha(excursion IN excursion.id_excursion%TYPE,fecha IN excursion.fecha_excursion%TYPE);
+PROCEDURE updHora(excursion IN excursion.id_excursion%TYPE,hora IN excursion.hora_excursion%TYPE);
+PROCEDURE delExcursion(excursion IN  excursion.id_excursion%TYPE);
+END dmlExcursion;
+/
+CREATE OR REPLACE PACKAGE BODY dmlExcursion AS
+PROCEDURE insertaExcursion(excursion IN excursion.id_excursion%TYPE,fecha IN excursion.fecha_excursion%TYPE,hora IN excursion.hora_excursion%TYPE,
+tipo IN excursion.tipo_excursion%TYPE,codigoAlojamiento IN excursion.cod_alojamiento%TYPE) IS
+BEGIN
+ INSERT INTO excursion VALUES(excursion,fecha,hora,tipo,codigoAlojamiento);
+EXCEPTION 
+WHEN  OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('Ocurrió el error: '||SQLCODE||' Mensaje: '||SQLERRM);
+END insertaExcursion;
+PROCEDURE updFecha(excursion IN excursion.id_excursion%TYPE,fecha IN excursion.fecha_excursion%TYPE) IS
+BEGIN
+ UPDATE excursion a
+ SET     a.fecha_excursion=fecha
+ WHERE   a.id_excursion=excursion;
+EXCEPTION 
+WHEN  OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('Ocurrió el error: '||SQLCODE||' Mensaje: '||SQLERRM);
+END updFecha;
+PROCEDURE updHora(excursion IN excursion.id_excursion%TYPE,hora IN excursion.hora_excursion%TYPE) IS
+BEGIN
+ UPDATE excursion a
+ SET     a.hora_excursion=hora
+ WHERE   a.id_excursion=excursion;
+EXCEPTION 
+WHEN  OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('Ocurrió el error: '||SQLCODE||' Mensaje: '||SQLERRM);
+END updHora;
+PROCEDURE delExcursion(excursion IN  excursion.id_excursion%TYPE) IS
+BEGIN
+ DELETE excursion a
+ WHERE  a.id_excursion=excursion;
+ EXCEPTION 
+WHEN  OTHERS THEN
+      DBMS_OUTPUT.PUT_LINE('Ocurrió el error: '||SQLCODE||' Mensaje: '||SQLERRM);
+END delExcursion;
+END dmlExcursion;
+/
+---Fin segundo procedimiento
+
+
+--6/AGOSTO/2016
+--En System
+CREATE USER parqueAdm		identified by PNaEkMrK20;
+CREATE USER MMendez			identified by SysDBa0229;
+CREATE USER EVargas			identified by Eymhtet2016;
+CREATE USER RLedezma 		identified by Ycsyva2016;
+
+GRANT CREATE SESSION TO parqueAdm;
+GRANT CREATE SESSION TO MMendez;
+GRANT CREATE SESSION TO EVargas;
+GRANT CREATE SESSION TO RLedezma;
+
+CREATE role administrador;
+CREATE role investigador;
+CREATE role pgestion;
+CREATE role recursosh;
+
+--Esto es el Parque Natural 
+GRANT SELECT,INSERT,UPDATE, DELETE ON area 		 		 TO administrador;
+GRANT SELECT,INSERT,UPDATE, DELETE ON especie	 		 TO administrador;
+GRANT SELECT,INSERT,UPDATE, DELETE ON investigador 		 TO administrador;
+GRANT SELECT,INSERT,UPDATE, DELETE ON organismo		 	 TO administrador;
+GRANT SELECT,INSERT,UPDATE, DELETE ON parque_natural	 TO administrador;
+GRANT SELECT,INSERT,UPDATE, DELETE ON alojamiento		 TO administrador;
+GRANT SELECT,INSERT,UPDATE, DELETE ON comunidad_autonoma TO administrador;
+GRANT SELECT,INSERT,UPDATE, DELETE ON excursion          TO administrador;
+GRANT SELECT,INSERT,UPDATE, DELETE ON personal           TO administrador;
+GRANT SELECT,INSERT,UPDATE, DELETE ON tipo_personal      TO administrador;
+GRANT SELECT,INSERT,UPDATE, DELETE ON visitante          TO administrador;
+GRANT SELECT,INSERT,UPDATE, DELETE ON residen            TO administrador;
+GRANT SELECT,INSERT,UPDATE, DELETE ON compone       	 TO administrador;
+GRANT SELECT,INSERT,UPDATE, DELETE ON puede_tener        TO administrador;
+
+
+GRANT SELECT,INSERT,UPDATE,DELETE ON especie TO investigador;
+GRANT SELECT ON proyecto     TO investigador;
+
+GRANT SELECT,INSERT,UPDATE,DELETE ON visitante TO pgestion;
+GRANT SELECT ON alojamiento TO pgestion;
+GRANT SELECT ON excursion 	TO pgestion;
+
+GRANT SELECT,INSERT,UPDATE,DELETE ON personal 		TO recursosh;
+GRANT SELECT,INSERT,UPDATE,DELETE ON tipo_personal	TO recursosh;
+
+GRANT administrador TO parqueAdm;
+GRANT recursosh 	TO MMendez;
+GRANT investigador	TO EVargas;
+GRANT pgestion 		TO RLedezma;
+
+
+----En parque natural
+SELECT
+'Create public synonym '||table_name||
+' for proyecto.'||table_name||';' from cat;
+
+----Esto se pone en system
+CREATE public 	synonym ALOJAMIENTO			for proyecto.ALOJAMIENTO;
+CREATE public 	synonym AREA				for proyecto.AREA;
+CREATE public 	synonym COMPONE 			for proyecto.COMPONE;
+CREATE public 	synonym COMUNIDAD_AUTONOMA 	for proyecto.COMUNIDAD_AUTONOMA;
+CREATE public 	synonym ESPECIE 			for proyecto.ESPECIE;
+CREATE public 	synonym EXCURSION 			for proyecto.EXCURSION;
+CREATE public 	synonym INVESTIGADOR 		for proyecto.INVESTIGADOR;
+CREATE public 	synonym LOGPERSONAL 		for proyecto.LOGPERSONAL;
+CREATE public 	synonym LOGVISITANTE 		for proyecto.LOGVISITANTE;
+CREATE public 	synonym ORGANISMO 			for proyecto.ORGANISMO;
+CREATE public 	synonym PARQUE_NATURAL 		for proyecto.PARQUE_NATURAL;
+CREATE public 	synonym PERSONAL 			for proyecto.PERSONAL;
+CREATE public 	synonym PROYECTO 			for proyecto.PROYECTO;
+CREATE public	synonym PUEDE_TENER 		for proyecto.PUEDE_TENER;
+CREATE public 	synonym RESIDEN 			for proyecto.RESIDEN;
+CREATE public 	synonym TIPO_PERSONAL 		for proyecto.TIPO_PERSONAL;
+CREATE public 	synonym VISITANTE 			for proyecto.VISITANTE;
+
+
+
+---Poner COMMIT, 
+COMMIT;
+
+
+--Concurrencia
+
+
+
+
+
+
+
+
