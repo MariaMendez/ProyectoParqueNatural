@@ -110,6 +110,7 @@
             this.buttonGuardaParqueNatural.Size = new System.Drawing.Size(67, 60);
             this.buttonGuardaParqueNatural.TabIndex = 97;
             this.buttonGuardaParqueNatural.UseVisualStyleBackColor = true;
+            this.buttonGuardaParqueNatural.Click += new System.EventHandler(this.buttonGuardaParqueNatural_Click);
             // 
             // parqueFecha
             // 

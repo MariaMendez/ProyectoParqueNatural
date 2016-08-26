@@ -80,7 +80,24 @@ namespace ProyectoFinal
                 Console.WriteLine("Error!", ex.ToString());
            }
         }
+        //Parque Natural
+        public void insertaParque(int identificacion, string nombre, string fecha)
+        {
+            try
+            {
 
+                databaseConnection.Open();
+                OracleCommand command = new OracleCommand("insert into parque_natural values('" + identificacion + "','" + nombre + "','" + fecha + "')", databaseConnection);
+                command.ExecuteNonQuery();
+                MessageBox.Show("Registro guardado", "");
+                databaseConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error!", ex.ToString());
+                Console.WriteLine("Error!", ex.ToString());
+            }
+        }
         //Alojamiento
         public void insertaAlojamiento(Int64 idAlojamiento, string v_categoria, Int64 capacidad, Int64 cod_parque)
         {

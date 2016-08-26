@@ -13,6 +13,7 @@ namespace ProyectoFinal
 {
     public partial class TablaParquesNaturales : Form
     {
+        Controlador controladora = new Controlador();
         public TablaParquesNaturales()
         {
             InitializeComponent();
@@ -72,6 +73,11 @@ namespace ProyectoFinal
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void buttonGuardaParqueNatural_Click(object sender, EventArgs e)
+        {
+            controladora.insertaParque(int.Parse(parqueID.Text),parqueNombre.Text,parqueFecha.Text);
         }
     }
 }
