@@ -149,35 +149,53 @@ namespace ProyectoFinal
                 }
                 databaseConnection.Close();
             }
-  
-
-
-
-
-
-      //  public void eliminarAlojamiento(Int64 idAlojamiento)
+        //  public void eliminarAlojamiento(Int64 idAlojamiento)
         //{
-          //  try
-           // {
-             //   databaseConnection.Open();
-               // OracleCommand cmd = new OracleCommand("DMLALOJAMIENTO.DELALOJA", databaseConnection);
-                //cmd.CommandText = "DMLALOJAMIENTO.DELALOJA";
-                //cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.BindByName = true;
-                //cmd.Parameters.Add("Return_Value", OracleDbType.Int16, ParameterDirection.ReturnValue);
-                //cmd.Parameters.Add("alojamiento1", OracleDbType.Int64).Value = idAlojamiento;
-                //OracleTransaction transaction = databaseConnection.BeginTransaction(IsolationLevel.ReadCommitted);
-                //cmd.Transaction = transaction;
-                //cmd.ExecuteNonQuery();
-                //transaction.Commit();
-                //databaseConnection.Close();
-            //}
-           // catch (Exception ex)
-            //{
-              //  Console.WriteLine("Exception:{0}", ex.ToString());
-            //}
-            //databaseConnection.Close();
+        //  try
+        // {
+        //   databaseConnection.Open();
+        // OracleCommand cmd = new OracleCommand("DMLALOJAMIENTO.DELALOJA", databaseConnection);
+        //cmd.CommandText = "DMLALOJAMIENTO.DELALOJA";
+        //cmd.CommandType = CommandType.StoredProcedure;
+        //cmd.BindByName = true;
+        //cmd.Parameters.Add("Return_Value", OracleDbType.Int16, ParameterDirection.ReturnValue);
+        //cmd.Parameters.Add("alojamiento1", OracleDbType.Int64).Value = idAlojamiento;
+        //OracleTransaction transaction = databaseConnection.BeginTransaction(IsolationLevel.ReadCommitted);
+        //cmd.Transaction = transaction;
+        //cmd.ExecuteNonQuery();
+        //transaction.Commit();
+        //databaseConnection.Close();
         //}
+        // catch (Exception ex)
+        //{
+        //  Console.WriteLine("Exception:{0}", ex.ToString());
+        //}
+        //databaseConnection.Close();
+        //}
+
+        //Comunidad Autónoma
+        public void insertaComunidad(int identificacion, string nombre, int parque, int superficie, int codigoOrg)
+        {
+            try
+            {
+
+                databaseConnection.Open();
+                OracleCommand command = new OracleCommand("insert into comunidad_autonoma values('" + identificacion + "','" + nombre + "','" + parque + "','" + superficie + "','" + codigoOrg + "')", databaseConnection);
+                command.ExecuteNonQuery();
+                MessageBox.Show("Registro guardado", "");
+                databaseConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error!", ex.ToString());
+                Console.WriteLine("Error!", ex.ToString());
+            }
+        }
+
+
+
+
+        
     }
 }
 

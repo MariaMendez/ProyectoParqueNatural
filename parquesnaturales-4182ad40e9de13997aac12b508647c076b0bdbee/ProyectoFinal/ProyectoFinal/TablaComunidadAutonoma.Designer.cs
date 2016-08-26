@@ -139,6 +139,7 @@
             this.buttonGuardaComunidadAutonoma.Size = new System.Drawing.Size(67, 60);
             this.buttonGuardaComunidadAutonoma.TabIndex = 60;
             this.buttonGuardaComunidadAutonoma.UseVisualStyleBackColor = true;
+            this.buttonGuardaComunidadAutonoma.Click += new System.EventHandler(this.buttonGuardaComunidadAutonoma_Click);
             // 
             // comNumero
             // 

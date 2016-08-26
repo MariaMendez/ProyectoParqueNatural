@@ -13,6 +13,8 @@ namespace ProyectoFinal
 {
     public partial class TablaComunidadAutonoma : Form
     {
+
+        Controlador controladora = new Controlador();
         public TablaComunidadAutonoma()
         {
             InitializeComponent();
@@ -141,6 +143,11 @@ namespace ProyectoFinal
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void buttonGuardaComunidadAutonoma_Click(object sender, EventArgs e)
+        {
+            controladora.insertaComunidad(int.Parse(comID.Text),comNombre.Text,int.Parse(comNumero.Text), int.Parse(comSuperficieDeclarada.Text), int.Parse(comComboBoxOrganismo.Text));
         }
     }
 }
