@@ -43,7 +43,7 @@ namespace ProyectoFinal
 
         public void buttonIngresar_Click(object sender, EventArgs e)
         {
-
+            
            
                try
                {
