@@ -138,6 +138,7 @@
             this.buttonGuardaOrganismo.Size = new System.Drawing.Size(67, 60);
             this.buttonGuardaOrganismo.TabIndex = 27;
             this.buttonGuardaOrganismo.UseVisualStyleBackColor = true;
+            this.buttonGuardaOrganismo.Click += new System.EventHandler(this.buttonGuardaOrganismo_Click);
             // 
             // label3
             // 

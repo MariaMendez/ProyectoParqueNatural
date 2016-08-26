@@ -62,6 +62,24 @@ namespace ProyectoFinal
                 MessageBox.Show("Error!", ex.ToString());
             }
         }
+        //Organismo
+        public void insertaOrganismo(int identificacion, string nombre, string direccion)
+        {
+            try
+            {
+
+                databaseConnection.Open();
+                OracleCommand command = new OracleCommand("insert into organismo values('" + identificacion + "','" + nombre + "','" + direccion+ "')", databaseConnection);
+                command.ExecuteNonQuery();
+                MessageBox.Show("Registro guardado", "");
+                databaseConnection.Close();
+           }
+           catch (Exception ex)
+           {
+                MessageBox.Show("Error!", ex.ToString());
+                Console.WriteLine("Error!", ex.ToString());
+           }
+        }
 
         //Alojamiento
         public void insertaAlojamiento(Int64 idAlojamiento, string v_categoria, Int64 capacidad, Int64 cod_parque)

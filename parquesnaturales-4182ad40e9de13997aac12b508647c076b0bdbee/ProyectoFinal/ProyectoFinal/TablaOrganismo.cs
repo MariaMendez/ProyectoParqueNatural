@@ -13,6 +13,7 @@ namespace ProyectoFinal
 {
     public partial class TablaOrganismo : Form
     {
+        Controlador controladora=new Controlador();
         public TablaOrganismo()
         {
             InitializeComponent();
@@ -76,6 +77,11 @@ namespace ProyectoFinal
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void buttonGuardaOrganismo_Click(object sender, EventArgs e)
+        {
+            controladora.insertaOrganismo(int.Parse(orgID.Text),orgNombre.Text,orgDireccion.Text);
         }
     }
 }
