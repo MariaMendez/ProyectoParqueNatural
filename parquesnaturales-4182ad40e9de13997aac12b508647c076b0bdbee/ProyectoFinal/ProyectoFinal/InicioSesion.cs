@@ -43,22 +43,23 @@ namespace ProyectoFinal
 
         public void buttonIngresar_Click(object sender, EventArgs e)
         {
-            
-           
-               //try
-               //{
-               // string usuario = textoUsuario.Text.ToString();
-                //string pass = textoContraseña.Text.ToString();
-                //string conexion = ("Data Source=MARIA-HP;User Id=" + usuario + ";" + "Password=" + pass + ";");
-                //OracleConnection databaseConnection = new OracleConnection(conexion);
-                //databaseConnection.Open();
-                //}
-               // catch (Exception ex)
-                //{
-                //MessageBox.Show("Usuario o contraseña incorrectos.Acceso denegado",ex.ToString());
-                
-                //}
-           
+
+
+                try
+                {
+
+                string usuario = textoUsuario.Text.ToString();
+                string pass = textoContraseña.Text.ToString();
+                string conexion = ("Data Source=MARIA-HP;User Id=" + usuario + ";" + "Password=" + pass + ";");
+                OracleConnection databaseConnection = new OracleConnection(conexion);
+                databaseConnection.Open();
+                }
+                catch (Exception ex)
+                {
+                MessageBox.Show("Error!", ex.ToString());
+                }
+                 
+
                 if (textoUsuario.Text == ("parqueAdm") && (textoContraseña.Text == ("PNaEkMrK20")))
                 {
                     this.Hide();
@@ -83,8 +84,12 @@ namespace ProyectoFinal
                     MenuInvestigador.ShowDialog();
 
                 }
+                else 
+                {
+                MessageBox.Show("Usuario y/o contraseña incorrectos. Acceso denegado");
+                }
 
-            }
+        }
             
         
 

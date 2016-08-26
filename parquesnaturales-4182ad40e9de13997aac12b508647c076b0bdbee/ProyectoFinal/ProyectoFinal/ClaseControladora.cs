@@ -42,7 +42,7 @@ namespace ProyectoFinal
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error", ex.ToString());
+                MessageBox.Show("Error!", ex.ToString());
             }
         }
         //
