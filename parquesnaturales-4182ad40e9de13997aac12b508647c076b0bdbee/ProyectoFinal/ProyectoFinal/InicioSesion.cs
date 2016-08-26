@@ -19,6 +19,8 @@ namespace ProyectoFinal
     {
 
 
+       
+
         public InicioSesion()
         {
             InitializeComponent();
@@ -39,44 +41,52 @@ namespace ProyectoFinal
 
 
 
-        private void buttonIngresar_Click(object sender, EventArgs e)
+        public void buttonIngresar_Click(object sender, EventArgs e)
         {
 
-            if (textoUsuario.Text == ("admin") && (textoContraseña.Text == ("clave")))
-            {
-                this.Hide();
-                MenuAdministrador MenuAdministrador = new MenuAdministrador();
-                MenuAdministrador.ShowDialog();
+           
+               try
+               {
+                string usuario = textoUsuario.Text.ToString();
+                string pass = textoContraseña.Text.ToString();
+                string conexion = ("Data Source=MARIA-HP;User Id=" + usuario + ";" + "Password=" + pass + ";");
+                OracleConnection databaseConnection = new OracleConnection(conexion);
+                databaseConnection.Open();
+                }
+                catch (Exception ex)
+                {
+                MessageBox.Show("Usuario o contraseña incorrectos.Acceso denegado",ex.ToString());
+                
+                }
+           
+                if (textoUsuario.Text == ("parqueAdm") && (textoContraseña.Text == ("PNaEkMrK20")))
+                {
+                    this.Hide();
+                    MenuAdministrador MenuAdministrador = new MenuAdministrador();
+                    MenuAdministrador.ShowDialog();
 
+
+                }
+                else if (textoUsuario.Text == ("RLedezma") && (textoContraseña.Text == ("Ycsyva2016")))
+                {
+                    this.Hide();
+                    MenuGestor MenuGestor = new MenuGestor();
+                    MenuGestor.ShowDialog();
+
+
+                }
+
+                else if (textoUsuario.Text == ("MMendez") && (textoContraseña.Text == (" SysDBa0229")))
+                {
+                    this.Hide();
+                    MenuInvestigador MenuInvestigador = new MenuInvestigador();
+                    MenuInvestigador.ShowDialog();
+
+                }
 
             }
-            else if (textoUsuario.Text == ("admin2") && (textoContraseña.Text == ("clave2")))
-            {
-                this.Hide();
-                MenuGestor MenuGestor = new MenuGestor();
-                MenuGestor.ShowDialog();
-
-
-            }
-            else if (textoUsuario.Text == ("admin3") && (textoContraseña.Text == ("clave3")))
-            {
-                this.Hide();
-                MenuInvestigador MenuInvestigador = new MenuInvestigador();
-                MenuInvestigador.ShowDialog();
-
-            }
-            else if (textoUsuario.Text == ("admin4") && (textoContraseña.Text == ("clave4")))
-            {
-
-                this.Hide();
-                MenuRecursosHumanos MenuRecursosHumanos = new MenuRecursosHumanos();
-                MenuRecursosHumanos.ShowDialog();
-            }
-            else {
-                MessageBox.Show("Usuario y/o contraseña incorrectos", "Error!");
-            }
-
-        }
+            
+        
 
         private void InicioSesion_Load(object sender, EventArgs e)
         {
@@ -101,42 +111,42 @@ namespace ProyectoFinal
 
         private void textoContraseña_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == Convert.ToChar(Keys.Enter))
+            try
             {
-                if (textoUsuario.Text == ("admin") && (textoContraseña.Text == ("clave")))
-                {
-                    this.Hide();
-                    MenuAdministrador MenuAdministrador = new MenuAdministrador();
-                    MenuAdministrador.ShowDialog();
+                string usuario = textoUsuario.Text.ToString();
+                string pass = textoContraseña.Text.ToString();
+                string conexion = ("Data Source=MARIA-HP;User Id=" + usuario + ";" + "Password=" + pass + ";");
+                OracleConnection databaseConnection = new OracleConnection(conexion);
+                databaseConnection.Open();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Usuario o contraseña incorrectos.Acceso denegado", ex.ToString());
+
+            }
+
+            if (textoUsuario.Text == ("parqueAdm") && (textoContraseña.Text == ("PNaEkMrK20")))
+            {
+                this.Hide();
+                MenuAdministrador MenuAdministrador = new MenuAdministrador();
+                MenuAdministrador.ShowDialog();
 
 
-                }
-                else if (textoUsuario.Text == ("admin2") && (textoContraseña.Text == ("clave2")))
-                {
-                    this.Hide();
-                    MenuGestor MenuGestor = new MenuGestor();
-                    MenuGestor.ShowDialog();
+            }
+            else if (textoUsuario.Text == ("RLedezma") && (textoContraseña.Text == ("Ycsyva2016")))
+            {
+                this.Hide();
+                MenuGestor MenuGestor = new MenuGestor();
+                MenuGestor.ShowDialog();
 
 
-                }
-                else if (textoUsuario.Text == ("admin3") && (textoContraseña.Text == ("clave3")))
-                {
-                    this.Hide();
-                    MenuInvestigador MenuInvestigador = new MenuInvestigador();
-                    MenuInvestigador.ShowDialog();
+            }
 
-                }
-                else if (textoUsuario.Text == ("admin4") && (textoContraseña.Text == ("clave4")))
-                {
-
-                    this.Hide();
-                    MenuRecursosHumanos MenuRecursosHumanos = new MenuRecursosHumanos();
-                    MenuRecursosHumanos.ShowDialog();
-                }
-                else {
-                    MessageBox.Show("Usuario y/o contraseña incorrectos", "Error!");
-                }
-
+            else if (textoUsuario.Text == ("MMendez") && (textoContraseña.Text == (" SysDBa0229")))
+            {
+                this.Hide();
+                MenuInvestigador MenuInvestigador = new MenuInvestigador();
+                MenuInvestigador.ShowDialog();
 
             }
         }
@@ -149,7 +159,18 @@ namespace ProyectoFinal
                 textoContraseña.Focus();
             }
         }
+
+
     }
-
-
 }
+
+
+
+
+
+
+            
+           
+            
+           
+
