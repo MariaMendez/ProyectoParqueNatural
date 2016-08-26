@@ -124,6 +124,7 @@
             this.buttonGuardaEspecies.Size = new System.Drawing.Size(67, 60);
             this.buttonGuardaEspecies.TabIndex = 60;
             this.buttonGuardaEspecies.UseVisualStyleBackColor = true;
+            this.buttonGuardaEspecies.Click += new System.EventHandler(this.buttonGuardaEspecies_Click);
             // 
             // espNombreCientifico
             // 
@@ -197,6 +198,7 @@
             this.espID.Name = "espID";
             this.espID.Size = new System.Drawing.Size(197, 20);
             this.espID.TabIndex = 53;
+            
             // 
             // label1
             // 

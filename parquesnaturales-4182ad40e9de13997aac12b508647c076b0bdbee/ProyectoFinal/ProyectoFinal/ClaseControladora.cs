@@ -28,6 +28,24 @@ namespace ProyectoFinal
             command.ExecuteNonQuery();
             databaseConnection.Close();
         }
+        //Especie
+        public void insertaEspecie(int identificacion, char tipo, string cientifico_especie, string vulgar_especie, int num_individuos, string flora, string periodoflorac, string tipoalimentacion, string periodocelo, string tipomineral)
+        {
+            try
+            {
+
+                databaseConnection.Open();
+                OracleCommand command = new OracleCommand("insert into especie values('" + identificacion + "','" + tipo + "','" + cientifico_especie + "','" + vulgar_especie + "','" + num_individuos + "','" + flora + "','" + periodoflorac + "','" + tipoalimentacion + "','" + periodocelo + "','" + tipomineral + "')", databaseConnection);
+                command.ExecuteNonQuery();
+                MessageBox.Show("Registro guardado", "");
+                databaseConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error", ex.ToString());
+            }
+        }
+        //
 
         //Alojamiento
         public void insertaAlojamiento(Int64 idAlojamiento, string v_categoria, Int64 capacidad, Int64 cod_parque)
@@ -76,11 +94,11 @@ namespace ProyectoFinal
             
             }catch (Exception ex)
                 {
-                    Console.WriteLine("Exception:{0}", ex.ToString());
+                MessageBox.Show("Exception:{0}", ex.ToString());
                 }
                 databaseConnection.Close();
             }
-
+  
 
 
 

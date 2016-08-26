@@ -13,6 +13,7 @@ namespace ProyectoFinal
 {
     public partial class TablaEspecies : Form
     {
+        Controlador controladora = new Controlador();
         public TablaEspecies()
         {
             InitializeComponent();
@@ -133,7 +134,15 @@ namespace ProyectoFinal
             }
         }
 
+        private void buttonGuardaEspecies_Click(object sender, EventArgs e)
+        {
+            Char tipo = Char.Parse(espTipoEspecie.Text);
+           
+            int id = int.Parse(espID.Text);
+            controladora.insertaEspecie(id,tipo,espNombreCientifico.Text,espNombreVulgar.Text,int.Parse(espNumeroIndividuos.Text), espFloracion.Text, espPeriodoFloracion.Text,EspTipoAlimentacion.Text,espPeriodoCelo.Text,espTipoMineral.Text);
+        }
 
+        
     }
 
 

@@ -45,19 +45,19 @@ namespace ProyectoFinal
         {
             
            
-               try
-               {
-                string usuario = textoUsuario.Text.ToString();
-                string pass = textoContraseña.Text.ToString();
-                string conexion = ("Data Source=MARIA-HP;User Id=" + usuario + ";" + "Password=" + pass + ";");
-                OracleConnection databaseConnection = new OracleConnection(conexion);
-                databaseConnection.Open();
-                }
-                catch (Exception ex)
-                {
-                MessageBox.Show("Usuario o contraseña incorrectos.Acceso denegado",ex.ToString());
+               //try
+               //{
+               // string usuario = textoUsuario.Text.ToString();
+                //string pass = textoContraseña.Text.ToString();
+                //string conexion = ("Data Source=MARIA-HP;User Id=" + usuario + ";" + "Password=" + pass + ";");
+                //OracleConnection databaseConnection = new OracleConnection(conexion);
+                //databaseConnection.Open();
+                //}
+               // catch (Exception ex)
+                //{
+                //MessageBox.Show("Usuario o contraseña incorrectos.Acceso denegado",ex.ToString());
                 
-                }
+                //}
            
                 if (textoUsuario.Text == ("parqueAdm") && (textoContraseña.Text == ("PNaEkMrK20")))
                 {
