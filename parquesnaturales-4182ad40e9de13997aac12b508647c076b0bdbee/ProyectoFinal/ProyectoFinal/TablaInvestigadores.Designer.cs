@@ -142,6 +142,7 @@
             this.buttonGuardaInvestigador.Size = new System.Drawing.Size(67, 60);
             this.buttonGuardaInvestigador.TabIndex = 78;
             this.buttonGuardaInvestigador.UseVisualStyleBackColor = true;
+            this.buttonGuardaInvestigador.Click += new System.EventHandler(this.buttonGuardaInvestigador_Click);
             // 
             // invApellido
             // 

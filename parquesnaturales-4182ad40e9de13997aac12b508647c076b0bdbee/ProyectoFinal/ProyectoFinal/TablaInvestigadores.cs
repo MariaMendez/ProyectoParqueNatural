@@ -13,6 +13,7 @@ namespace ProyectoFinal
 {
     public partial class TablaInvestigadores : Form
     {
+        Controlador controladora = new Controlador();
         public TablaInvestigadores()
         {
             InitializeComponent();
@@ -76,6 +77,11 @@ namespace ProyectoFinal
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void buttonGuardaInvestigador_Click(object sender, EventArgs e)
+        {
+            controladora.insertaInvestigador(int.Parse(invID.Text),invNombre.Text,invApellido.Text,int.Parse(invTelefono.Text),invTitulo.Text);
         }
     }
 }
