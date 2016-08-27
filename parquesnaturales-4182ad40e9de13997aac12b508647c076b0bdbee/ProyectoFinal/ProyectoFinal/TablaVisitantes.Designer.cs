@@ -158,6 +158,7 @@
             this.buttonGuardaVisitantes.Size = new System.Drawing.Size(67, 60);
             this.buttonGuardaVisitantes.TabIndex = 96;
             this.buttonGuardaVisitantes.UseVisualStyleBackColor = true;
+            this.buttonGuardaVisitantes.Click += new System.EventHandler(this.buttonGuardaVisitantes_Click);
             // 
             // visNombre
             // 

@@ -17,6 +17,7 @@ namespace ProyectoFinal
         {
             InitializeComponent();
             FillCombo1();
+            FillCombo2();
             StartPosition = FormStartPosition.CenterScreen;
         }
 
@@ -75,6 +76,42 @@ namespace ProyectoFinal
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void buttonGuardaVisitantes_Click(object sender, EventArgs e)
+        {
+            Controlador elControlador = new Controlador();
+            elControlador.insertaVisitante(int.Parse(visID.Text), int.Parse(visDNI.Text), visNombre.Text, visDomicilio.Text, visProfesion.Text, int.Parse(visComboBoxCodAlojamiento.Text));
+        }
+        void FillCombo2()
+        {
+
+            //**RECUERDEN CAMBIAR EL DATA SOURCE, Jeje
+            OracleConnection databaseConnection = new OracleConnection("Data Source=MARIA-HP;User Id=parquenatural;Password=pepe;");
+            string query = "select cod_alojamiento from VISITANTE";
+            OracleCommand cmd = new OracleCommand(query, databaseConnection);
+            OracleDataReader myReader;
+
+            try
+            {
+                databaseConnection.Open();
+                myReader = cmd.ExecuteReader();  //exception due to this line
+
+                while (myReader.Read())
+                {
+
+                    //string sIdParque = myReader.GetString(4);
+                    //aloComboBoxParque.Items.Add(sIdParque);
+
+                    visComboBoxCodAlojamiento.Items.Add(myReader.GetInt64(myReader.GetOrdinal("cod_alojamiento")));
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
     }
-   
+
 }

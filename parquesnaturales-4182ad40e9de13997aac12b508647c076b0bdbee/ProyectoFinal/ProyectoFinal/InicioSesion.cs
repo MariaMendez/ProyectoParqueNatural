@@ -19,7 +19,7 @@ namespace ProyectoFinal
     {
 
 
-       
+
 
         public InicioSesion()
         {
@@ -45,50 +45,50 @@ namespace ProyectoFinal
         {
 
 
-                try
-                {
+            try
+            {
 
                 string usuario = textoUsuario.Text.ToString();
                 string pass = textoContraseña.Text.ToString();
                 string conexion = ("Data Source=MARIA-HP;User Id=" + usuario + ";" + "Password=" + pass + ";");
                 OracleConnection databaseConnection = new OracleConnection(conexion);
                 databaseConnection.Open();
-                }
-                catch (Exception ex)
-                {
-                MessageBox.Show("Error!", ex.ToString());
-                }
-                 
-
-                if (textoUsuario.Text == ("parqueAdm") && (textoContraseña.Text == ("PNaEkMrK20")))
-                {
-                    this.Hide();
-                    MenuAdministrador MenuAdministrador = new MenuAdministrador();
-                    MenuAdministrador.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error!", "Usuario incorrecto");
+            }
 
 
-                }
-                else if (textoUsuario.Text == ("RLedezma") && (textoContraseña.Text == ("Ycsyva2016")))
-                {
-                    this.Hide();
-                    MenuGestor MenuGestor = new MenuGestor();
-                    MenuGestor.ShowDialog();
+            if (textoUsuario.Text == ("parqueAdm") && (textoContraseña.Text == ("PNaEkMrK20")))
+            {
+                this.Hide();
+                MenuAdministrador MenuAdministrador = new MenuAdministrador();
+                MenuAdministrador.ShowDialog();
 
 
-                }
+            }
+            else if (textoUsuario.Text == ("RLedezma") && (textoContraseña.Text == ("Ycsyva2016")))
+            {
+                this.Hide();
+                MenuGestor MenuGestor = new MenuGestor();
+                MenuGestor.ShowDialog();
 
-                else if (textoUsuario.Text == ("MMendez") && (textoContraseña.Text == (" SysDBa0229")))
-                {
-                    this.Hide();
-                    MenuInvestigador MenuInvestigador = new MenuInvestigador();
-                    MenuInvestigador.ShowDialog();
 
-                }
-                else 
+            }
+
+            else if (textoUsuario.Text == ("MMendez") && (textoContraseña.Text == (" SysDBa0229")))
+            {
+                this.Hide();
+                MenuInvestigador MenuInvestigador = new MenuInvestigador();
+                MenuInvestigador.ShowDialog();
+
+            }
+        /* else 
                 {
                 MessageBox.Show("Usuario y/o contraseña incorrectos. Acceso denegado");
                 }
-
+            */
         }
             
         

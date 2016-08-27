@@ -76,7 +76,7 @@ namespace ProyectoFinal
             string query = "select * from ALOJAMIENTO where id_alojamiento='" + ComboBoxAlojamiento.Text + "'";
             OracleCommand cmd = new OracleCommand(query, databaseConnection);
             OracleDataReader myReader;
-
+            
             try
             {
                 databaseConnection.Open();

@@ -125,6 +125,26 @@ namespace ProyectoFinal
                 databaseConnection.Close();
             
         }
+
+
+        public void insertaVisitante(int identificacion, int dni, string nombre, string domicilio, string profesion, int cod_alojamiento)
+        {
+            try
+            {
+
+                databaseConnection.Open();
+                OracleCommand command = new OracleCommand("insert into visitante values('" + identificacion + "','" + dni + "','" + nombre + "','" + domicilio
+                     + "','"+ profesion + "','"+ cod_alojamiento+ "')", databaseConnection);
+                command.ExecuteNonQuery();
+                MessageBox.Show("Registro guardado", "");
+                databaseConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error!", ex.ToString());
+                Console.WriteLine("Error!", ex.ToString());
+            }
+        }
         public void actualizaCategoria(Int64 idAlojamiento, string v_categoria)
         {
             try
@@ -149,6 +169,8 @@ namespace ProyectoFinal
                 }
                 databaseConnection.Close();
             }
+
+        
         //  public void eliminarAlojamiento(Int64 idAlojamiento)
         //{
         //  try
