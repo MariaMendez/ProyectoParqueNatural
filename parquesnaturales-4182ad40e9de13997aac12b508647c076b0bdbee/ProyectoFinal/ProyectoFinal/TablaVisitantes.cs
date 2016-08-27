@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProyectoFinal
-{
+{ 
     public partial class TablaVisitantes : Form
     {
         public TablaVisitantes()
